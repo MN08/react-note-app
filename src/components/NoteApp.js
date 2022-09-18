@@ -1,9 +1,10 @@
 import React from 'react';
 // import { nanoid } from 'nanoid';
 import NotesList from './NotesList';
-import { getInitialData } from '../utils/data';
+import { getInitialData, showFormattedDate } from '../utils/data';
 import AddNote from './AddNote';
 import Search from './Search';
+import Empty from './Empty';
  
 class NoteApp extends React.Component {
     constructor(props) {
@@ -30,7 +31,8 @@ class NoteApp extends React.Component {
                 id: +new Date(),
                 title,
                 text,
-                createdAt,
+                createdAt: showFormattedDate(+new Date()),
+               
               }
             ]
           }
@@ -47,8 +49,14 @@ class NoteApp extends React.Component {
             <h1>Search</h1>
 				    <Search/>
             <h1>Notes List</h1>
-            <NotesList notes={this.state.notes} handleDeleteNote={this.onDeleteHandler}
-            />
+           
+            {this.state.notes.length > 0 ? (
+              <NotesList notes={this.state.notes} handleDeleteNote={this.onDeleteHandler} />            
+             
+              ) : <Empty/>
+            }            
+           
+            
         </div>
         );
     }

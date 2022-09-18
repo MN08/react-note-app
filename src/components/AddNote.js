@@ -8,7 +8,6 @@ class AddNote extends React.Component {
    this.state = {
      title: '',
      text: '',
-    //  createdAt:'',
    }
  
    this.onTitleChangeEventHandler = this.onTitleChangeEventHandler.bind(this);
